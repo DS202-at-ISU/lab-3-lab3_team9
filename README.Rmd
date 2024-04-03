@@ -31,9 +31,48 @@ head(av)
 
 Get the data into a format where the five columns for Death[1-5] are replaced by two columns: Time, and Death. Time should be a number between 1 and 5 (look into the function `parse_number`); Death is a categorical variables with values "yes", "no" and "". Call the resulting data set `deaths`. 
 
+```{r}
+library(readr)
+# Extract the numeric part from the column names for deaths
+death_columns <- colnames(av)[grepl("^Death\\d+$", colnames(av))]
+time_values <- parse_number(death_columns)
+
+# Create the deaths dataset
+deaths <- data.frame(Time = time_values, Death = character(length(time_values)), stringsAsFactors = FALSE)
+
+# Populate the Death column based on the original dataset
+for (i in 1:nrow(deaths)) {
+  deaths$Death[i] <- ifelse(av[i, death_columns[i]] == "YES", "yes", "no")
+}
+```
+
+
 Similarly, deal with the returns of characters.
 
+```{r}
+# Extract the numeric part from the column names for returns
+return_columns <- colnames(av)[grepl("^Return\\d+$", colnames(av))]
+time_values_return <- parse_number(return_columns)
+
+# Create the returns dataset
+returns <- data.frame(Time = time_values_return, Return = character(length(time_values_return)), stringsAsFactors = FALSE)
+
+# Populate the Return column based on the original dataset
+for (i in 1:nrow(returns)) {
+  returns$Return[i] <- ifelse(av[i, return_columns[i]] == "YES", "yes", "no")
+}
+```
+
+
 Based on these datasets calculate the average number of deaths an Avenger suffers. 
+
+```{r}
+# Calculate the average number of deaths
+average_deaths <- mean(deaths$Time)
+average_deaths
+```
+
+**On average, an Avenger suffers approximately 3 deaths**
 
 ## Individually
 
