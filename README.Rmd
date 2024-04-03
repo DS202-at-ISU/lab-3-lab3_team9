@@ -92,23 +92,6 @@ Make sure to include the code to derive the (numeric) fact for the statement
 
 Include at least one sentence discussing the result of your fact-checking endeavor.
 
-Emily:\
-
-Fact: The MVP of the Earth-616 Marvel Universe Avengers has to be Jocasta — an android based on Janet van Dyne and built by Ultron — who has been destroyed five times and then recovered five times.\
-
-```{r}
-library(dplyr)
-# Filter the data for Jocasta
-jocasta <- av %>%
-  filter(Name.Alias == "Jocasta")
-
-# Calculate the number of times Jocasta has been destroyed and recovered
-num_deaths <- sum(jocasta$Death1 == "YES", jocasta$Death2 == "YES", jocasta$Death3 == "YES", jocasta$Death4 == "YES", jocasta$Death5 == "YES")
-num_returns <- sum(jocasta$Return1 == "YES", jocasta$Return2 == "YES", jocasta$Return3 == "YES", jocasta$Return4 == "YES", jocasta$Return5 == "YES")
-
-num_deaths
-num_returns
-```
 
 The dataset showed that Jocasta indeed was destroyed 5 times and then recovered 5 times.\
 
