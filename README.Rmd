@@ -112,4 +112,24 @@ num_returns
 
 The dataset showed that Jocasta indeed was destroyed 5 times and then recovered 5 times.\
 
+Ryan:\
+
+Fact: There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife, but only a 50 percent chance they recovered from a second or third death.\
+
+```{r }
+# Calculating ratio of those who return from their first death
+firstdeath <- sum(av$Death1 == "YES")
+firstreturn <- sum(av$Return1 == "YES")
+firstreturn / firstdeath
+
+# Calculating ratio of those who return from second/third death
+stdeath <- sum(av$Death2 == "YES",
+               av$Death3 == "YES")
+streturn <- sum(av$Return2 == "YES",
+                av$Return3 == "YES")
+streturn / stdeath
+```
+
+The dataset shows that Avengers return 66% (2/3) of the time after their first death, while they only return 50% of the time after their second and third deaths.
+
 Upload your changes to the repository. Discuss and refine answers as a team.
