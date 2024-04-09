@@ -208,9 +208,38 @@ streturn / stdeath
 
     ## [1] 0.5
 
-The dataset shows that Avengers return 66% (2/3) of the time after their
-first death, while they only return 50% of the time after their second
-and third deaths.
+## Individually - Mason
 
-Upload your changes to the repository. Discuss and refine answers as a
-team.
+### FiveThirtyEight Statement
+
+> Out of 173 listed Avengers, my analysis found that 69 had died at
+> least one time after they joined the team. That’s about 40 percent of
+> all people who have ever signed on to the team.
+
+### Include the code
+
+``` r
+# Fact-checking the statement about the number of Avengers who died at least once
+avengers_with_deaths <- av %>% 
+  filter(Death1 == "YES")
+
+number_of_avengers_with_deaths <- nrow(avengers_with_deaths)
+number_of_avengers <- nrow(av)
+
+number_of_avengers_with_deaths
+```
+
+    ## [1] 69
+
+``` r
+number_of_avengers_with_deaths/number_of_avengers *100
+```
+
+    ## [1] 39.88439
+
+### Include your answer
+
+The number of avengers with at least 1 death was 69, which is accurate.
+Out of the total of 173 the percentage of deaths were 39.88%, but for
+this case you can’t have a decimal percentage so it is rounded up to
+40%, which makes this statement accurate.
